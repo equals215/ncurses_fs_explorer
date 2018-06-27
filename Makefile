@@ -7,7 +7,7 @@
 
 SRC		=	src/main.c				\
 
-SRCS_TEST	=	
+SRCS_TEST	=
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -15,7 +15,7 @@ INC_DIR		=	$(realpath ./include)
 
 LIB_DIR		=	$(realpath ./lib)
 
-NAME		=	calendar
+NAME		=	explorer
 
 NAME_LIBMY	=	lib/libmy.a
 
@@ -24,9 +24,9 @@ NAME_TEST_LIB	=	lib/libtestmy.a
 CFLAGS		=	-W -Wall -Wextra -Wc99-c11-compat -pedantic \
 			-std=c99 -I$(INC_DIR) -g3
 
-LDFLAGS		=	-L$(LIB_DIR) -lmy
+LDFLAGS		=	-L$(LIB_DIR) -lmy -lncurses
 
-LDTESTFLAGS	=	-L$(LIB_DIR) -ltestmy
+LDTESTFLAGS	=	-L$(LIB_DIR) -ltestmy -lncurses
 
 all:		$(NAME_LIBMY) $(NAME)
 
