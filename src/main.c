@@ -11,10 +11,9 @@
 
 int main(void)
 {
-	initscr();
-	printw("Hello World");
+	display_windows();
 	refresh();
 	getch();
 	endwin();
-	return ( 0);
+	return (0);
 }

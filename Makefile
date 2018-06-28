@@ -6,6 +6,7 @@
 ##
 
 SRC		=	src/main.c				\
+			src/gui/gui_main.c			\
 
 SRCS_TEST	=
 

@@ -8,6 +8,6 @@
 #ifndef EXPLORER_H
 #define EXPLORER_H
 
-
+#include "funcs.h"
 
 #endif
