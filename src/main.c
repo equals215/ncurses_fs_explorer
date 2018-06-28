@@ -9,11 +9,24 @@
 #include <ncurses.h>
 #include "explorer.h"
 
-int main(void)
+int main(int ac, char **av)
 {
-	display_windows();
-	refresh();
-	getch();
+	WINDOW *main_w;
+	WINDOW *right_w;
+	char **dir;
+
+	(void)ac;
+	(void)av;
+	initscr();
+	while (1) {
+		dir = parse_dir(getpwd());
+		display_windows(&main_w, &right_w);
+		wrefresh(main_w);
+		wrefresh(right_w);
+		if(keyboard_event() == 1)
+			break;
+		clear();
+	}
 	endwin();
 	return (0);
 }

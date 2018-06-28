@@ -11,6 +11,8 @@
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200809L
 
+#include "correct_ftw.h"
+
 #include <math.h>
 #include <stdlib.h>
 #include <setjmp.h>

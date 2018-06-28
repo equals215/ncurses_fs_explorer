@@ -9,18 +9,18 @@
 #include <ncurses.h>
 #include "explorer.h"
 
-void display_windows(void)
+/*
+** PURPOSE : Display UI windows
+** PARAMS  : WINDOW **main_w - Main window pointer
+**           WINDOW **right_w - Right window pointer
+** RETURNS : None
+*/
+void display_windows(WINDOW **main_w, WINDOW **right_w)
 {
-	WINDOW *main_w, *right_w;
-
-	initscr();
-	main_w = subwin(stdscr, LINES, COLS, 0, 0);
-	right_w = subwin(stdscr, LINES - (LINES / 4), COLS / 3, 1, COLS - (COLS / 3) - 1);
-	box(main_w, ACS_VLINE, ACS_HLINE);
-	box(right_w, ACS_VLINE, ACS_HLINE);
-	wborder(right_w, '/', '/', '/', '/', '/', '/', '/', '/');
-	mvwprintw(main_w, 1, 1, "Ceci est la fenetre de navigation");
-	mvwprintw(right_w, 1, 1, "Ceci est la fenetre de previsualisation");
-	wrefresh(main_w);
-	wrefresh(right_w);
+	*main_w = subwin(stdscr, LINES, COLS, 0, 0);
+	*right_w = subwin(stdscr, LINES - (LINES / 4), COLS / 3, 1,
+	COLS - (COLS / 3) - 1);
+	box(*main_w, ACS_VLINE, ACS_HLINE);
+	box(*right_w, ACS_VLINE, ACS_HLINE);
+	wborder(*right_w, '/', '/', '/', '/', '/', '/', '/', '/');
 }

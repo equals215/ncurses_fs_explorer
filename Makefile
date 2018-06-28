@@ -6,7 +6,11 @@
 ##
 
 SRC		=	src/main.c				\
+			src/core/tree/dir_parsing.c		\
+			src/core/utils/getpwd.c			\
+			src/core/utils/is_binary.c		\
 			src/gui/gui_main.c			\
+			src/keyboard/keyboard_handler.c		\
 
 SRCS_TEST	=
 
