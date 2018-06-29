@@ -6,12 +6,12 @@
 */
 
 /* src/core/tree/dir_parsing.c */
-int list(const char *, const struct stat *, int, struct FTW *);
-void epur_path(char *, char *);
-char **put_in_array(char *, int *);
+char **walk_dir(char *, regex_t *, int *);
 char **parse_dir(char *);
 /* src/core/utils/getpwd.c */
 char *getpwd(void);
+/* src/core/utils/free_tab.c */
+void free_tab(char **);
 /* src/core/utils/is_binary.c */
 int is_binary(const void *, size_t);
 /* src/gui/gui_main.c */

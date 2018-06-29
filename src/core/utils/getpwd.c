@@ -15,7 +15,7 @@ char *getpwd(void)
 	char *buf = (char *)smalloc(PATH_MAX);
 
 	memset(buf, '\0', 1000);
-	ret = getcwd(buf, 1000);
+	ret = strdup(getcwd(buf, 1000));
 	free(buf);
 	return (ret);
 }

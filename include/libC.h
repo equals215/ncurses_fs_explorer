@@ -34,5 +34,6 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <dirent.h>
+#include <regex.h>
 
 #endif

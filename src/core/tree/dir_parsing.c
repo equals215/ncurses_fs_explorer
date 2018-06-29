@@ -9,6 +9,7 @@
 #include "parsing.h"
 #include <ncurses.h>
 #include "explorer.h"
+#include "memory.h"
 
 /*
 ** PURPOSE : Function used by qsort to sort an array
@@ -22,85 +23,34 @@ static int compare_str(const void *a, const void *b)
 }
 
 /*
-** PURPOSE : Function used by nftw that prints the entire path in a temp file
-** PARAMS  : const char *name - Name of the dir to be parsed
-**           const struct stat *status - Non-used but mandatory arg
-**           int type - Type of the dir given by nftw
-**           struct FTW *ftwbuf - Special nftw function that gives some info
-** RETURNS : int - Returns -1 on incident
+** PURPOSE : Walk non-recursively a given dir and put the files and dir paths
+**           into a list
+** PARAMS  : const char *dir - The directory to walk
+**           const char *pattern - Regex pattern to match
+**           int *i - Number of files counter
+** RETURNS : char ** - The files list, NULL if error
 */
-int list(const char *name, const struct stat *status, int type,
-struct FTW *ftwbuf)
+char **walk_dir(char *dir, regex_t *reg, int *i)
 {
-	FILE *temp = fopen("temp", "a");
-
-	(void)status;
-	if (type == FTW_NS || type == FTW_DNR)
-		return (-1);
-	if (type == FTW_F && !(strstr(name, "/.") != NULL
-	&& ftwbuf->level >= 1))
-		fprintf(temp, "%s\n", name);
-	if (type == FTW_D && name[0] != '.')
-		fprintf(temp, "%s/\n", name);
-	fclose(temp);
-	return (0);
-}
-
-/*
-** PURPOSE : Epur file name from complex path
-** PARAMS  : char *name - name to epur
-**           char *path - original path to epur from name
-** RETURNS : None
-*/
-void epur_path(char *name, char *path)
-{
-	int nb_slash = 0;
-	int len_path = strlen(path);
-	int len_last_dir = 0;
-	int total = 0;
-	char *temp;
-
-	for (int i = 0; path[i] != '\0'; i++)
-		nb_slash += path[i] == '/' ? 1 : 0;
-	if (nb_slash >= 1 && path[len_path - 1] == '/')
-		path[--len_path] = '\0';
-	else if (nb_slash >= 1) {
-		temp = strrchr(path, '/');
-		temp += 1;
-		len_last_dir = strlen(temp);
-		total = len_path - len_last_dir;
-		memmove(name, name + total, strlen(name) - total + 1);
-	}
-}
-
-/*
-** PURPOSE : Parse the dir with nftw and put all the paths from temp file
-**           and put them in array of strings
-** PARAMS  : char *path - Path of the dir to parse
-**           int *i - Counter that will be used later in the program
-** RETURNS : char ** - The array of paths
-*/
-char **put_in_array(char *path, int *i)
-{
-	char *buf;
+	DIR *d;
 	char **temp;
-	int ret = nftw(path, list, 1, FTW_PHYS);
-	int fd = open("temp", O_RDONLY);
-	char **list = (char **)malloc(sizeof(char *));
+	struct dirent *entry;
+	char **list = (char **)smalloc(sizeof(char *));
 
-	if (ret == -1) {
-		remove("temp");
-		exit (84);
-	} for (; (buf = get_next_line(fd)); (*i)++) {
-		temp = (char**)realloc(list, (sizeof(char *) * (*i + 2)));
-		list = temp ? temp : list;
-		epur_path(buf, path);
-		list[*i] = strdup(buf);
-		list[*i + 1] = NULL;
-		free(buf);
+	if (!(d = opendir(dir))) {
+		perror("opendir");
+		return (NULL);
 	}
-	close(fd);
-	remove("temp");
+	while ((entry = readdir(d))) {
+		if (!regexec(reg, entry->d_name, 0, NULL, 0)) {
+			temp = (char**)realloc(list, (sizeof(char *) * (*i + 2)));
+			list = temp != NULL ? temp : list;
+			list[*i] = strdup(entry->d_name);
+			list[*i + 1] = NULL;
+			(*i)++;
+		}
+	}
+	closedir(d);
 	return (list);
 }
 
@@ -113,9 +63,16 @@ char **put_in_array(char *path, int *i)
 char **parse_dir(char *path)
 {
 	int i = 0;
+	regex_t reg;
 	char **list;
 
-	list = put_in_array(path, &i);
+	if (regcomp(&reg, "^[^.].*$", REG_EXTENDED | REG_NOSUB)) {
+		perror("regcomp");
+		return (NULL);
+	}
+	if ((list = walk_dir(path, &reg, &i)) == NULL)
+		exit(84);
 	qsort(list, i, sizeof(const char *), compare_str);
+	regfree(&reg);
 	return (list);
 }

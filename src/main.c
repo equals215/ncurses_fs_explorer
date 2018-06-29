@@ -28,5 +28,6 @@ int main(int ac, char **av)
 		clear();
 	}
 	endwin();
+	free_tab(dir);
 	return (0);
 }
