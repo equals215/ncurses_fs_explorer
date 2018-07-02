@@ -56,9 +56,11 @@ void get_files_and_dirs(explorer_t *explorer)
 	head = actual;
 	for (int i = 0; list[i] != NULL; i++) {
 		actual->next = create_node(list[i]);
-		actual->next->next = NULL;
-		actual->next->prev = actual;
-		actual = actual->next;
+		if (actual->next != NULL) {
+			actual->next->next = NULL;
+			actual->next->prev = actual;
+			actual = actual->next;
+		}
 	}
 	explorer->head = head;
 	free_tab(list);

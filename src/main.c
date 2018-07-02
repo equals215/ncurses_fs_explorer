@@ -16,13 +16,14 @@ int main(int ac, char **av)
 	explorer_t *explorer = init_explorer(ac, av);
 
 	initscr();
+	keypad(stdscr, TRUE);
 	get_files_and_dirs(explorer);
 	while (1) {
 		display_windows(&main_w, &right_w, explorer);
 		display_files(main_w, explorer);
 		wrefresh(main_w);
 		wrefresh(right_w);
-		if(keyboard_event() == 1)
+		if(keyboard_event(explorer) == 1)
 			break;
 		clear();
 	}

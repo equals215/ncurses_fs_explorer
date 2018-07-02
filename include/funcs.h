@@ -29,4 +29,4 @@ void display_windows(WINDOW **, WINDOW **, explorer_t *);
 /* src/main.c */
 int main(int, char **);
 /* src/keyboard/keyboard_handler.c */
-int keyboard_event(void);
+int keyboard_event(explorer_t *);

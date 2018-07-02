@@ -17,13 +17,17 @@
 */
 explorer_t *init_explorer(int ac, char **av)
 {
+	char *buf = smalloc(sizeof(char) * PATH_MAX);
 	explorer_t *new = (explorer_t *)smalloc(sizeof(explorer_t));
 
 	if (ac == 2 && opendir(av[1]) == NULL) {
 		perror("explorer");
 		exit(84);
-	}
-	new->cwd = ac == 2 ? av[1] : getpwd();
+	} else if (ac == 2) {
+		new->cwd = realpath(av[1], buf);
+		chdir(new->cwd);
+	} else
+		new->cwd = getpwd();
 	new->head = NULL;
 	return (new);
 }

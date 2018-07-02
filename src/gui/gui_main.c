@@ -36,7 +36,7 @@ void display_files(WINDOW *win, explorer_t *explorer)
 {
 	file_t *actual = explorer->head;
 
-	for (int i = 0; actual->next != NULL; i++) {
+	for (int i = 0; actual != NULL; i++) {
 		if (actual->active == true)
 			wattron(win, A_REVERSE);
 		mvwprintw(win, i + 1, 1, actual->name);
