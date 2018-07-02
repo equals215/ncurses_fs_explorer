@@ -30,7 +30,7 @@ file_t *create_node(char *name)
 		new->type = F_DIR;
 	} else if ((filestat.st_mode & S_IFMT) == S_IFREG) {
 		new->dir = false;
-		new->type = get_file_type(name, 50);
+		new->type = get_file_type(name);
 	} else {
 		new->dir = false;
 		new->type = F_OTHER;

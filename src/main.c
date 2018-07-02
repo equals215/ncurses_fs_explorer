@@ -16,8 +16,8 @@ int main(int ac, char **av)
 	explorer_t *explorer = init_explorer(ac, av);
 
 	initscr();
+	get_files_and_dirs(explorer);
 	while (1) {
-		get_files_and_dirs(explorer);
 		display_windows(&main_w, &right_w, explorer);
 		display_files(main_w, explorer);
 		wrefresh(main_w);

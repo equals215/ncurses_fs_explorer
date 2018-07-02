@@ -8,39 +8,45 @@
 #include "libC.h"
 #include "explorer.h"
 #include "memory.h"
+#include "strings.h"
 
 /*
 ** PURPOSE : Determine if the given data is from a binary of not
 ** PARAMS  : const void *data - data to test
-**           size_t len - len of this data
-** RETURNS : int - 0 if it's a text file 1 if it's a binary
+** RETURNS : int - 1 if it's a text file 0 if it's a binary
 */
-int is_binary(const void *data, size_t len)
+int is_binary(const void *data)
 {
-	return (memchr(data, '\0', len - 1) != NULL);
+	return (my_str_isprintable((char *)data));
 }
 
 /*
 ** PURPOSE : Function that heuristically determines the type of a file from
 **           it's content
 ** PARAMS  : char *name - Name of the file to test
-**           int len_to_read - Number of readed bytes used to detect the type
 ** RETURNS : int - ascii based file : F_TEXT 1
 **           (WIP)image based file : F_IMG 2
 **           binary based file : F_BIN 3
 */
-int get_file_type(char *name, int len_to_read)
+int get_file_type(char *name)
 {
+	char *buf;
+	int len = 0;
+	int ret = 0;
 	FILE *filep = fopen(name, "r");
-	char *buf = (char *)smalloc(sizeof(char) * (len_to_read + 1));
-	int len = fread(buf, 1, len_to_read, filep);
 
-	fclose(filep);
-	buf[len] = '\0';
-	if (!is_binary(buf, len_to_read)) {
+	do {
+		buf = smalloc(sizeof(char) * (LEN_TO_READ + 1));
+		len = fread(buf, 1, LEN_TO_READ, filep);
+		buf[len] = '\0';
+		if (!is_binary(buf)) {
+			ret = F_BIN;
+			break;
+		}
 		free(buf);
-		return (F_TEXT);
-	}
+	} while (len == LEN_TO_READ);
+	ret = ret == 0 ? F_TEXT : ret;
 	free(buf);
-	return (F_BIN);
+	fclose(filep);
+	return (ret);
 }

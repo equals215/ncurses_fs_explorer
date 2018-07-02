@@ -6,8 +6,8 @@
 */
 
 /* src/core/tree/file_parsing.c */
-int is_binary(const void *, size_t);
-int get_file_type(char *, int);
+int is_binary(const void *);
+int get_file_type(char *);
 /* src/core/tree/list_parsing.c */
 file_t *create_node(char *);
 void get_files_and_dirs(explorer_t *);

@@ -33,6 +33,8 @@ typedef struct explorer_s
 #define Y_MIN 80
 #define X_MIN 20
 
+#define LEN_TO_READ 1024
+
 #include <ncurses.h>
 #include "funcs.h"
 
