@@ -9,6 +9,11 @@
 #include "memory.h"
 #include <linux/limits.h>
 
+/*
+** PURPOSE : Get the current working dir
+** PARAMS  : None
+** RETURNS : char - The current working dir in a malloc'd string
+*/
 char *getpwd(void)
 {
 	char *ret;

@@ -6,7 +6,6 @@
 */
 
 #include "libC.h"
-#include <ncurses.h>
 #include "explorer.h"
 
 /*

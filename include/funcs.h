@@ -5,15 +5,21 @@
 ** funcs.h file of the {{project_name}} project
 */
 
+/* src/core/tree/file_parsing.c */
+int is_binary(const void *, size_t);
+int get_file_type(char *, int);
+/* src/core/tree/list_parsing.c */
+file_t *create_node(char *, int);
+void get_files_and_dirs(explorer_t *);
 /* src/core/tree/dir_parsing.c */
 char **walk_dir(char *, regex_t *, int *);
 char **parse_dir(char *);
 /* src/core/utils/getpwd.c */
 char *getpwd(void);
+/* src/core/utils/init_explorer.c */
+explorer_t *init_explorer(int, char **);
 /* src/core/utils/free_tab.c */
 void free_tab(char **);
-/* src/core/utils/is_binary.c */
-int is_binary(const void *, size_t);
 /* src/gui/gui_main.c */
 void display_windows(WINDOW **, WINDOW **);
 /* src/main.c */

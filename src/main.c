@@ -6,21 +6,20 @@
 */
 
 #include "libC.h"
-#include <ncurses.h>
 #include "explorer.h"
+#include "memory.h"
 
 int main(int ac, char **av)
 {
 	WINDOW *main_w;
 	WINDOW *right_w;
-	char **dir;
+	explorer_t *explorer = init_explorer(ac, av);
 
-	(void)ac;
-	(void)av;
 	initscr();
 	while (1) {
-		dir = parse_dir(getpwd());
+		get_files_and_dirs(explorer);
 		display_windows(&main_w, &right_w);
+		//display_files();
 		wrefresh(main_w);
 		wrefresh(right_w);
 		if(keyboard_event() == 1)
@@ -28,6 +27,5 @@ int main(int ac, char **av)
 		clear();
 	}
 	endwin();
-	free_tab(dir);
 	return (0);
 }

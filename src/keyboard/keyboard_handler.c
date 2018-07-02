@@ -6,9 +6,13 @@
 */
 
 #include "libC.h"
-#include <ncurses.h>
 #include "explorer.h"
 
+/*
+** PURPOSE : Function used to catch and interpret keyboard events
+** PARAMS  : None
+** RETURNS : int - Action to do
+*/
 int keyboard_event(void)
 {
 	int ch = getch();
