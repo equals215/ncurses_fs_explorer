@@ -8,27 +8,29 @@
 #ifndef EXPLORER_H
 #define EXPLORER_H
 
-#include "funcs.h"
+typedef struct file_s
+{
+	bool active;
+	bool dir;
+	int type;
+	char *name;
+	struct file_s *next;
+	struct file_s *prev;
+}file_t;
 
-// typedef struct file_s
-// {
-// 	int active;
-// 	int type;
-// 	char *name;
-// 	struct file_s *next;
-// 	struct file_s *prev;
-// }file_t;
-//
-// typedef struct dir_s
-// {
-// 	int active;
-// 	file_t *head;
-//
-// }dir_t;
-//
-// typedef struct explorer_s
-// {
-// 	/* code */
-// }explorer_t;
+typedef struct explorer_s
+{
+	file_t *head;
+	char *cwd;
+}explorer_t;
+
+#define F_TEXT 1
+#define F_IMG 2
+#define F_BIN 3
+#define F_OTHER 4
+#define F_DIR 5
+
+#include <ncurses.h>
+#include "funcs.h"
 
 #endif
