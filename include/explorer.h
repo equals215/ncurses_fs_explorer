@@ -30,6 +30,9 @@ typedef struct explorer_s
 #define F_OTHER 4
 #define F_DIR 5
 
+#define Y_MIN 80
+#define X_MIN 20
+
 #include <ncurses.h>
 #include "funcs.h"
 

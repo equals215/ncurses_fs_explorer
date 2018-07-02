@@ -10,6 +10,7 @@
 #include <ncurses.h>
 #include "explorer.h"
 #include "memory.h"
+#include "strings.h"
 
 /*
 ** PURPOSE : Function used by qsort to sort an array
@@ -19,7 +20,16 @@
 */
 static int compare_str(const void *a, const void *b)
 {
-	return (strcmp(*(char **)a, *(char **)b));
+	char *adup = strdup(*(char **)a);
+	char *bdup = strdup(*(char **)b);
+	int ret = 0;
+
+	my_strlowcase(adup);
+	my_strlowcase(bdup);
+	ret = strcmp(adup, bdup);
+	free(adup);
+	free(bdup);
+	return (ret);
 }
 
 /*
@@ -72,7 +82,7 @@ char **parse_dir(char *path)
 	}
 	if ((list = walk_dir(path, &reg, &i)) == NULL)
 		exit(84);
-	qsort(list, i, sizeof(const char *), compare_str);
+	qsort(list, i, sizeof(char *), compare_str);
 	regfree(&reg);
 	return (list);
 }

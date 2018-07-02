@@ -17,7 +17,7 @@
 */
 int is_binary(const void *data, size_t len)
 {
-	return (memchr(data, '\0', len) != NULL);
+	return (memchr(data, '\0', len - 1) != NULL);
 }
 
 /*
@@ -33,9 +33,10 @@ int get_file_type(char *name, int len_to_read)
 {
 	FILE *filep = fopen(name, "r");
 	char *buf = (char *)smalloc(sizeof(char) * (len_to_read + 1));
+	int len = fread(buf, 1, len_to_read, filep);
 
-	fread(buf, 1, len_to_read, filep);
 	fclose(filep);
+	buf[len] = '\0';
 	if (!is_binary(buf, len_to_read)) {
 		free(buf);
 		return (F_TEXT);

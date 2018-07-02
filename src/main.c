@@ -19,7 +19,7 @@ int main(int ac, char **av)
 	while (1) {
 		get_files_and_dirs(explorer);
 		display_windows(&main_w, &right_w, explorer);
-		//display_files();
+		display_files(main_w, explorer);
 		wrefresh(main_w);
 		wrefresh(right_w);
 		if(keyboard_event() == 1)

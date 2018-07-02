@@ -15,7 +15,10 @@
 */
 int keyboard_event(void)
 {
-	int ch = getch();
+	int ch;
+
+	display_too_small();
+	ch = getch();
 	switch (ch) {
 		case 'q':
 			return (1);

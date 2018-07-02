@@ -9,7 +9,7 @@
 int is_binary(const void *, size_t);
 int get_file_type(char *, int);
 /* src/core/tree/list_parsing.c */
-file_t *create_node(char *, int);
+file_t *create_node(char *);
 void get_files_and_dirs(explorer_t *);
 /* src/core/tree/dir_parsing.c */
 char **walk_dir(char *, regex_t *, int *);
@@ -23,6 +23,8 @@ void free_tab(char **);
 /* src/gui/utils/middle_print.c */
 void print_in_middle(WINDOW *, int *, char *, chtype);
 /* src/gui/gui_main.c */
+void display_too_small(void);
+void display_files(WINDOW *, explorer_t *);
 void display_windows(WINDOW **, WINDOW **, explorer_t *);
 /* src/main.c */
 int main(int, char **);

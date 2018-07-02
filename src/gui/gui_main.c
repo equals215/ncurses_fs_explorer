@@ -10,6 +10,42 @@
 #include "memory.h"
 
 /*
+** PURPOSE : Function used to prevent a too small terminal
+** PARAMS  : None
+** RETURNS : None
+*/
+void display_too_small(void)
+{
+	char *msg = "Screen too small.";
+	int taille = strlen(msg);
+
+	while (Y_MIN > COLS || X_MIN > LINES) {
+		clear();
+		mvprintw(LINES / 2, (COLS / 2) - (taille / 2), msg);
+		refresh();
+	}
+}
+
+/*
+** PURPOSE : Display all files
+** PARAMS  : WINDOW *win - Display window
+**           explorer_t *explorer - Explorer data
+** RETURNS : None
+*/
+void display_files(WINDOW *win, explorer_t *explorer)
+{
+	file_t *actual = explorer->head;
+
+	for (int i = 0; actual->next != NULL; i++) {
+		if (actual->active == true)
+			wattron(win, A_REVERSE);
+		mvwprintw(win, i + 1, 1, actual->name);
+		wattroff(win, A_REVERSE);
+		actual = actual->next;
+	}
+}
+
+/*
 ** PURPOSE : Display UI windows
 ** PARAMS  : WINDOW **main_w - Main window pointer
 **           WINDOW **right_w - Right window pointer

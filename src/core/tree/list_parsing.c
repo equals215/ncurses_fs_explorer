@@ -12,16 +12,15 @@
 /*
 ** PURPOSE : Create a file_t node and put the files info inside
 ** PARAMS  : char *name - File name
-**           int i -File index in the dir
 ** RETURNS : file_t - Fullfilled node
 */
-file_t *create_node(char *name, int i)
+file_t *create_node(char *name)
 {
 	file_t *new = smalloc(sizeof(file_t));
 	struct stat filestat;
 
 	new->name = strdup(name);
-	new->active = i == 0 ? true : false;
+	new->active = 0;
 	if (stat(name, &filestat) != 0) {
 		perror("stat");
 		return (NULL);
@@ -31,7 +30,7 @@ file_t *create_node(char *name, int i)
 		new->type = F_DIR;
 	} else if ((filestat.st_mode & S_IFMT) == S_IFREG) {
 		new->dir = false;
-		new->type = get_file_type(name, 100);
+		new->type = get_file_type(name, 50);
 	} else {
 		new->dir = false;
 		new->type = F_OTHER;
@@ -50,18 +49,16 @@ void get_files_and_dirs(explorer_t *explorer)
 	file_t *actual = explorer->head;
 	char **list = parse_dir(explorer->cwd);
 
+	actual = create_node("..");
+	actual->prev = NULL;
+	actual->next = NULL;
+	actual->active = true;
+	head = actual;
 	for (int i = 0; list[i] != NULL; i++) {
-		if (actual == NULL) {
-			actual = create_node(list[i], i);
-			actual->prev = NULL;
-			actual->next = NULL;
-			head = actual;
-		} else {
-			actual->next = create_node(list[i], i);
-			actual->next->next = NULL;
-			actual->next->prev = actual;
-			actual = actual->next;
-		}
+		actual->next = create_node(list[i]);
+		actual->next->next = NULL;
+		actual->next->prev = actual;
+		actual = actual->next;
 	}
 	explorer->head = head;
 	free_tab(list);
