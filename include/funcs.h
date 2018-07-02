@@ -20,8 +20,10 @@ char *getpwd(void);
 explorer_t *init_explorer(int, char **);
 /* src/core/utils/free_tab.c */
 void free_tab(char **);
+/* src/gui/utils/middle_print.c */
+void print_in_middle(WINDOW *, int *, char *, chtype);
 /* src/gui/gui_main.c */
-void display_windows(WINDOW **, WINDOW **);
+void display_windows(WINDOW **, WINDOW **, explorer_t *);
 /* src/main.c */
 int main(int, char **);
 /* src/keyboard/keyboard_handler.c */

@@ -18,7 +18,7 @@ int main(int ac, char **av)
 	initscr();
 	while (1) {
 		get_files_and_dirs(explorer);
-		display_windows(&main_w, &right_w);
+		display_windows(&main_w, &right_w, explorer);
 		//display_files();
 		wrefresh(main_w);
 		wrefresh(right_w);
