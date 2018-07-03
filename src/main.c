@@ -23,10 +23,12 @@ int main(int ac, char **av)
 		display_files(main_w, explorer);
 		wrefresh(main_w);
 		wrefresh(right_w);
+		display_too_small();
 		if(keyboard_event(explorer) == 1)
 			break;
 		clear();
 	}
 	endwin();
+	free_explorer(explorer);
 	return (0);
 }

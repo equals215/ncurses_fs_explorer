@@ -9,6 +9,7 @@
 int is_binary(const void *);
 int get_file_type(char *);
 /* src/core/tree/list_parsing.c */
+file_t *create_head_node(char *);
 file_t *create_node(char *);
 void get_files_and_dirs(explorer_t *);
 /* src/core/tree/dir_parsing.c */
@@ -20,6 +21,11 @@ char *getpwd(void);
 explorer_t *init_explorer(int, char **);
 /* src/core/utils/free_tab.c */
 void free_tab(char **);
+/* src/core/utils/free_nodes.c */
+void free_all_nodes(file_t *);
+void free_node(file_t *);
+/* src/core/utils/free_explorer.c */
+void free_explorer(explorer_t *);
 /* src/gui/utils/middle_print.c */
 void print_in_middle(WINDOW *, int *, char *, chtype);
 /* src/gui/gui_main.c */
@@ -29,4 +35,7 @@ void display_windows(WINDOW **, WINDOW **, explorer_t *);
 /* src/main.c */
 int main(int, char **);
 /* src/keyboard/keyboard_handler.c */
+void next_file(explorer_t *);
+void prev_file(explorer_t *);
+void change_dir(explorer_t *);
 int keyboard_event(explorer_t *);
