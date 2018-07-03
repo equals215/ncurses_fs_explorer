@@ -10,6 +10,21 @@
 #include "memory.h"
 
 /*
+** PURPOSE : Create the first node of the list
+** PARAMS  : char *name - name of the file to be added as a head
+** RETURNS : file_t - The node
+*/
+file_t *create_head_node(char *name)
+{
+	file_t *actual = create_node(name);
+
+	actual->prev = NULL;
+	actual->next = NULL;
+	actual->active = true;
+	return (actual);
+}
+
+/*
 ** PURPOSE : Create a file_t node and put the files info inside
 ** PARAMS  : char *name - File name
 ** RETURNS : file_t - Fullfilled node
@@ -46,21 +61,18 @@ file_t *create_node(char *name)
 void get_files_and_dirs(explorer_t *explorer)
 {
 	file_t *head;
-	file_t *actual = explorer->head;
+	file_t *actual = create_head_node("..");
 	char **list = parse_dir(explorer->cwd);
 
-	actual = create_node("..");
-	actual->prev = NULL;
-	actual->next = NULL;
-	actual->active = true;
 	head = actual;
 	for (int i = 0; list[i] != NULL; i++) {
 		actual->next = create_node(list[i]);
-		if (actual->next != NULL) {
+		if (actual->next != NULL && actual->next->type != F_ERROR) {
 			actual->next->next = NULL;
 			actual->next->prev = actual;
 			actual = actual->next;
-		}
+		} else if (actual->next != NULL)
+			free_node(actual->next);
 	}
 	explorer->head = head;
 	free_tab(list);

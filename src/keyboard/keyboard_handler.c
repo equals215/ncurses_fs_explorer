@@ -7,6 +7,7 @@
 
 #include "libC.h"
 #include "explorer.h"
+#include "memory.h"
 
 /*
 ** PURPOSE : Make the next file an active file
@@ -45,16 +46,38 @@ void prev_file(explorer_t *explorer)
 }
 
 /*
+** PURPOSE : Change dir and parse files in the new cwd
+** PARAMS  : explorer_t *explorer - Explorer data
+** RETURNS : None
+*/
+void change_dir(explorer_t *explorer)
+{
+	file_t *actual = explorer->head;
+	char *buf = smalloc(sizeof(char) * PATH_MAX);
+
+	while (actual->active == false && actual->next != NULL)
+		actual = actual->next;
+	if (actual->dir == true && opendir(actual->name) == NULL) {
+		perror("explorer");
+		exit(84);
+	} else if (actual->dir == true) {
+		explorer->cwd = realpath(actual->name, buf);
+		chdir(explorer->cwd);
+		free_all_nodes(explorer->head);
+		explorer->head = NULL;
+		get_files_and_dirs(explorer);
+	}
+}
+
+/*
 ** PURPOSE : Function used to catch and interpret keyboard events
 ** PARAMS  : explorer_t *explorer - Explorer data
 ** RETURNS : int - Action to do
 */
 int keyboard_event(explorer_t *explorer)
 {
-	int ch;
+	int ch = getch();
 
-	display_too_small();
-	ch = getch();
 	switch (ch) {
 		case 'q':
 			return (1);
@@ -63,6 +86,10 @@ int keyboard_event(explorer_t *explorer)
 			break;
 		case KEY_DOWN:
 			next_file(explorer);
+			break;
+		case KEY_ENTER:
+		case 10:
+			change_dir(explorer);
 			break;
 		default:
 			break;

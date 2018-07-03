@@ -9,6 +9,8 @@ SRC		=	src/main.c				\
 			src/core/tree/dir_parsing.c		\
 			src/core/tree/file_parsing.c		\
 			src/core/tree/list_parsing.c		\
+			src/core/utils/free_nodes.c		\
+			src/core/utils/free_explorer.c		\
 			src/core/utils/free_tab.c		\
 			src/core/utils/getpwd.c			\
 			src/core/utils/init_explorer.c		\

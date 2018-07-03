@@ -35,18 +35,19 @@ int get_file_type(char *name)
 	int ret = 0;
 	FILE *filep = fopen(name, "r");
 
+	if (!filep)
+		return (F_ERROR);
 	do {
 		buf = smalloc(sizeof(char) * (LEN_TO_READ + 1));
 		len = fread(buf, 1, LEN_TO_READ, filep);
 		buf[len] = '\0';
 		if (!is_binary(buf)) {
+			free(buf);
 			ret = F_BIN;
 			break;
 		}
 		free(buf);
 	} while (len == LEN_TO_READ);
-	ret = ret == 0 ? F_TEXT : ret;
-	free(buf);
 	fclose(filep);
-	return (ret);
+	return (ret == 0 ? F_TEXT : ret);
 }

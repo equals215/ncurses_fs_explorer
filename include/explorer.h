@@ -29,6 +29,7 @@ typedef struct explorer_s
 #define F_BIN 3
 #define F_OTHER 4
 #define F_DIR 5
+#define F_ERROR 6
 
 #define Y_MIN 80
 #define X_MIN 20
