@@ -35,8 +35,10 @@ void display_too_small(void)
 void display_files(WINDOW *win, explorer_t *explorer)
 {
 	file_t *actual = explorer->head;
+	int offset = explorer->pos - (LINES - 1);
 
-
+	for (int count = 0; actual != NULL && count < offset; count++)
+		actual = actual->next;
 	for (int i = 0; actual != NULL && i < LINES - 2; i++) {
 		if (actual->active == true)
 			wattron(win, A_REVERSE);
