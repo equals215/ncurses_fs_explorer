@@ -32,18 +32,18 @@ file_t *create_head_node(char *name)
 file_t *create_node(char *name)
 {
 	file_t *new = smalloc(sizeof(file_t));
-	struct stat filestat;
+	struct stat fstat;
 
 	new->name = strdup(name);
 	new->active = 0;
-	if (stat(name, &filestat) != 0) {
+	if (stat(name, &fstat) != 0) {
 		perror("stat");
 		return (NULL);
 	}
-	if ((filestat.st_mode & S_IFMT) == S_IFDIR) {
+	if ((fstat.st_mode & S_IFMT) == S_IFDIR && fstat.st_size != 0) {
 		new->dir = true;
 		new->type = F_DIR;
-	} else if ((filestat.st_mode & S_IFMT) == S_IFREG) {
+	} else if ((fstat.st_mode & S_IFMT) == S_IFREG && fstat.st_size != 0) {
 		new->dir = false;
 		new->type = get_file_type(name);
 	} else {
@@ -67,7 +67,7 @@ void get_files_and_dirs(explorer_t *explorer)
 	head = actual;
 	for (int i = 0; list[i] != NULL; i++) {
 		actual->next = create_node(list[i]);
-		if (actual->next != NULL && actual->next->type != F_ERROR) {
+		if (list && actual->next != NULL && actual->next->type != F_ERROR) {
 			actual->next->next = NULL;
 			actual->next->prev = actual;
 			actual = actual->next;
