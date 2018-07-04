@@ -13,7 +13,7 @@ int my_str_isprintable(char *str)
 	if (str[0] == '\0')
 		return (1);
 	for (i = 0; str[i] != '\0'; i++) {
-		if (str[i] <= 126 && str[i] >= 32)
+		if (str[i] <= 126 && str[i] >= 32 || str[i] < 14 && str[i] > 7)
 			printable_count++;
 		else
 			return (0);

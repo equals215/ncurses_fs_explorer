@@ -40,8 +40,8 @@ file_t *create_node(char *name)
 		perror("stat");
 		return (NULL);
 	}
-	if ((fstat.st_mode & S_IFMT) == S_IFDIR && fstat.st_size != 0) {
-		new->dir = true;
+	if ((fstat.st_mode & S_IFMT) == S_IFDIR) {
+		new->dir = fstat.st_size != 0 ? true : false;
 		new->type = F_DIR;
 	} else if ((fstat.st_mode & S_IFMT) == S_IFREG && fstat.st_size != 0) {
 		new->dir = false;

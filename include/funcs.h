@@ -26,8 +26,13 @@ void free_all_nodes(file_t *);
 void free_node(file_t *);
 /* src/core/utils/free_explorer.c */
 void free_explorer(explorer_t *);
+/* src/gui/color_handler.c */
+void enable_color(WINDOW *, file_t *);
+void disable_color(WINDOW *, file_t *);
 /* src/gui/utils/middle_print.c */
 void print_in_middle(WINDOW *, int *, char *, chtype);
+/* src/gui/utils/init_gui.c */
+void init_gui(void);
 /* src/gui/gui_main.c */
 void display_too_small(void);
 void display_files(WINDOW *, explorer_t *);

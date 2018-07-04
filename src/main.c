@@ -15,8 +15,7 @@ int main(int ac, char **av)
 	WINDOW *right_w;
 	explorer_t *explorer = init_explorer(ac, av);
 
-	initscr();
-	keypad(stdscr, TRUE);
+	init_gui();
 	get_files_and_dirs(explorer);
 	while (1) {
 		display_windows(&main_w, &right_w, explorer);
