@@ -29,6 +29,8 @@ void free_explorer(explorer_t *);
 /* src/gui/color_handler.c */
 void enable_color(WINDOW *, file_t *);
 void disable_color(WINDOW *, file_t *);
+/* src/gui/scroll.c */
+void refresh_and_scroll(WINDOW *, WINDOW *, explorer_t *);
 /* src/gui/utils/middle_print.c */
 void print_in_middle(WINDOW *, int *, char *, chtype);
 /* src/gui/utils/init_gui.c */

@@ -18,6 +18,7 @@ SRC		=	src/main.c				\
 			src/gui/utils/middle_print.c		\
 			src/gui/color_handler.c			\
 			src/gui/gui_main.c			\
+			src/gui/scroll.c			\
 			src/keyboard/keyboard_handler.c		\
 
 SRCS_TEST	=

@@ -11,6 +11,7 @@
 void init_gui(void)
 {
 	initscr();
+	curs_set(0);
 	keypad(stdscr, TRUE);
 	if (has_colors() == FALSE) {
 		endwin();

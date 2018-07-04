@@ -37,7 +37,7 @@ void display_files(WINDOW *win, explorer_t *explorer)
 	file_t *actual = explorer->head;
 
 
-	for (int i = 0; actual != NULL && i < LINES - 2; i++) {
+	for (int i = 0; actual != NULL; i++) {
 		if (actual->active == true)
 			wattron(win, A_REVERSE);
 		enable_color(win, actual);
@@ -61,11 +61,15 @@ void display_windows(WINDOW **main_w, WINDOW **right_w, explorer_t *explorer)
 	coord[0] = 1;
 	coord[1] = 0;
 	coord[2] = COLS;
-	*main_w = subwin(stdscr, LINES, COLS, 0, 0);
-	*right_w = subwin(stdscr, LINES - 2, COLS / 3, 1,
+	*main_w = newpad(LINES, COLS);
+	*right_w = subpad(*main_w, LINES - 2, COLS / 3, 1,
 	COLS - (COLS / 3) - 1);
+	//*main_w = subwin(stdscr, LINES, COLS, 0, 0);
+	//*right_w = subwin(stdscr, LINES - 2, COLS / 3, 1,
+	//COLS - (COLS / 3) - 1);
 	box(*main_w, ACS_VLINE, ACS_HLINE);
 	box(*right_w, ACS_VLINE, ACS_HLINE);
 	wborder(*right_w, '/', '/', '/', '/', '/', '/', '/', '/');
 	print_in_middle(*main_w, coord, explorer->cwd, COLOR_WHITE);
+	//preview_file(explorer, *right_w);
 }

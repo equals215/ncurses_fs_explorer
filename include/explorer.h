@@ -22,6 +22,8 @@ typedef struct explorer_s
 {
 	file_t *head;
 	char *cwd;
+	int pos;
+	int offset;
 }explorer_t;
 
 #define F_TEXT 1

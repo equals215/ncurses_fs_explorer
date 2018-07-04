@@ -20,8 +20,7 @@ int main(int ac, char **av)
 	while (1) {
 		display_windows(&main_w, &right_w, explorer);
 		display_files(main_w, explorer);
-		wrefresh(main_w);
-		wrefresh(right_w);
+		refresh_and_scroll(main_w, right_w, explorer);
 		display_too_small();
 		if(keyboard_event(explorer) == 1)
 			break;

@@ -21,6 +21,7 @@ void next_file(explorer_t *explorer)
 	while (actual->active == false && actual->next != NULL)
 		actual = actual->next;
 	if (actual->active == true && actual->next != NULL) {
+		explorer->pos++;
 		actual->active = false;
 		actual->next->active = true;
 	} else
@@ -39,6 +40,7 @@ void prev_file(explorer_t *explorer)
 	while (actual->active == false && actual->next != NULL)
 		actual = actual->next;
 	if (actual->active == true && actual->prev != NULL) {
+		explorer->pos--;
 		actual->active = false;
 		actual->prev->active = true;
 	} else
