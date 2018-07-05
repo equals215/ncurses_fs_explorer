@@ -25,7 +25,7 @@ void print_preview(file_t *node, WINDOW *prevw)
 			mvwprintw(prevw, (PREVW_LINES - 2) / 2,
 			((PREVW_COLS - 2) / 2) - (fallb_len / 2), fallb);
 		else {
-			mvwprintw(prevw, 0, 0, file);
+			mvwaddstr(prevw, 0, 0, file);
 			free(file);
 		}
 	} else
