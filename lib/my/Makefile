@@ -62,7 +62,7 @@ SRC=		int/my_atoi.c				\
 OBJ=		$(SRC:.c=.o)
 
 #Flags de compilation
-CFLAGS=		-W -Wall -Wextra -Werror -pedantic -I./include -g3
+CFLAGS=		-W -Wall -Wextra -Werror -pedantic -I./include -std=c99
 
 #Nom du binaire
 NAME=		libmy.a
