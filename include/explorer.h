@@ -22,6 +22,9 @@ typedef struct explorer_s
 {
 	file_t *head;
 	char *cwd;
+	int io_action;
+	char *file_io_name;
+	char *file_io_path;
 	int tree_pos;
 	int prevw_pos;
 }explorer_t;
@@ -33,6 +36,9 @@ typedef struct explorer_s
 #define F_DIR 5
 #define F_ERROR 6
 
+#define COPY 1
+#define CUT 2
+
 #define Y_MIN 80
 #define X_MIN 20
 
@@ -41,6 +47,8 @@ typedef struct explorer_s
 #define OFFSET(a, b) ((a) - ((b) - 3))
 #define PREVW_LINES LINES - 2
 #define PREVW_COLS COLS / 3
+
+#define CTRL(c) ((c) & 037)
 
 #define LEN_TO_READ 1024
 

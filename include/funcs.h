@@ -5,6 +5,9 @@
 ** funcs.h file of the {{project_name}} project
 */
 
+/* src/core/io/copy_cut_paste.c */
+void paste_file(explorer_t *);
+void copy_cut_file(explorer_t *, int);
 /* src/core/tree/file_details_parsing.c */
 int is_binary(const void *);
 int get_file_type(char *);
@@ -49,4 +52,5 @@ int main(int, char **);
 void next_file(explorer_t *);
 void prev_file(explorer_t *);
 void change_dir(explorer_t *);
+void keyboard_ctrl_handling(int, explorer_t *);
 int keyboard_event(explorer_t *);

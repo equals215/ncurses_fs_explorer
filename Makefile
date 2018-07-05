@@ -6,6 +6,7 @@
 ##
 
 SRC		=	src/main.c				\
+			src/core/io/copy_cut_paste.c		\
 			src/core/preview/file_parsing.c		\
 			src/core/tree/dir_parsing.c		\
 			src/core/tree/file_details_parsing.c	\
