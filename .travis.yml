@@ -8,3 +8,5 @@ notifications:
     - thomas.foubert@epitech.eu
     on_success: always
     on_failure: always
+
+script: make all clean
