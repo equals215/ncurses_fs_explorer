@@ -2,7 +2,7 @@ language: c
 
 compiler: gcc
 
-install: ncurses
+install: sudo apt-get install libncurses-dev
 
 notifications:
   email:
