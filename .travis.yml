@@ -1,0 +1,10 @@
+language: c
+
+compiler: gcc-8
+
+notifications:
+  email:
+    recipients:
+    - thomas.foubert@epitech.eu
+    on_success: always
+    on_failure: always
