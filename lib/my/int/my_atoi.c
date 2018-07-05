@@ -5,7 +5,11 @@
 ** my_atoi.c
 */
 
-//Function thats retuns the first digit/number contained in a string
+/*
+** PURPOSE : Function thats retuns the first digit/number contained in a string
+** PARAMS  : char *str - string
+** RETURNS : int - digit/number found
+*/
 int my_atoi(char *str)
 {
 	int nb = 0;

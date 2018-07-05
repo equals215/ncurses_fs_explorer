@@ -12,7 +12,11 @@ int get_length(int nb, int length);
 int get_nb_size(int nb, int size);
 char *fill_s(char *s, int m, int nb, int length);
 
-//Function that retuns a string containing the given int
+/*
+** PURPOSE : Function that retuns a string containing the given int
+** PARAMS  : int nb - The int to transform
+** RETURNS : char - The str
+*/
 char *my_itos(int nb)
 {
 	int length = 1;

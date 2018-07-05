@@ -5,7 +5,12 @@
 ** thomas.foubert@epitech.eu
 */
 
-//Function that swaps the values of 2 int pointers
+/*
+** PURPOSE : Function that swaps the values of 2 int pointers
+** PARAMS  : int *a
+**           int *b
+** RETURNS : None
+*/
 void my_swap_int(int *a, int *b)
 {
 	int temp = *a;

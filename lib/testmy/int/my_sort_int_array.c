@@ -8,7 +8,12 @@
 void heapify(int *A, int i, int *heap_size);
 void build_heap(int *A, int size, int *heap_size);
 
-//Function that sort a given int array in ascending order
+/*
+** PURPOSE : Function that sort a given int array in ascending order
+** PARAMS  : int *tab - Int array
+**           int size - The size of the array
+** RETURNS : None
+*/
 void my_sort_int_array(int *tab, int size)
 {
 	int i;
