@@ -1,8 +1,8 @@
 language: c
-
 compiler: gcc
 
-install: sudo apt-get install libncurses-dev
+sudo: required
+install: sudo apt-get -y install libncurses-dev
 
 notifications:
   email:
