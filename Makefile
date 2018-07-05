@@ -39,7 +39,7 @@ NAME_LIBMY	=	lib/libmy.a
 
 NAME_TEST_LIB	=	lib/libtestmy.a
 
-CFLAGS		=	-W -Wall -Wextra -pedantic -std=c99 -I$(INC_DIR)
+CFLAGS		=	-W -Wall -Wextra -pedantic -std=c99 -I$(INC_DIR) -g3
 
 LDFLAGS		=	-L$(LIB_DIR) -lmy -lncurses
 

@@ -16,7 +16,6 @@
 void free_explorer(explorer_t *explorer)
 {
 	free(explorer->cwd);
-	free(explorer->file_io_name);
 	free(explorer->file_io_path);
 	free_all_nodes(explorer->head);
 	free(explorer);

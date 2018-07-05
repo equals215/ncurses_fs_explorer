@@ -23,7 +23,6 @@ typedef struct explorer_s
 	file_t *head;
 	char *cwd;
 	int io_action;
-	char *file_io_name;
 	char *file_io_path;
 	int tree_pos;
 	int prevw_pos;

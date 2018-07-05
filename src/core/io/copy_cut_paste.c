@@ -22,7 +22,7 @@ void paste_file(explorer_t *explorer)
 
 	if ((pid = fork()) == 0) {
 		execl("/bin/cp", "/bin/cp", explorer->file_io_path,
-		explorer->file_io_name, (char *) 0);
+		explorer->cwd, (char *) NULL);
 	} else if (pid < 0) {
 		fprintf(stderr, "explorer: Couldn't fork\n");
 		end_gui(explorer, 84);
@@ -51,6 +51,5 @@ void copy_cut_file(explorer_t *explorer, int action)
 	while (actual->active == false && actual->next != NULL)
 		actual = actual->next;
 	explorer->io_action = action;
-	explorer->file_io_name = strdup(actual->name);
 	explorer->file_io_path = realpath(actual->name, buf);
 }
