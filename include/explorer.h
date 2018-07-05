@@ -22,7 +22,8 @@ typedef struct explorer_s
 {
 	file_t *head;
 	char *cwd;
-	int pos;
+	int tree_pos;
+	int prevw_pos;
 }explorer_t;
 
 #define F_TEXT 1
@@ -35,9 +36,14 @@ typedef struct explorer_s
 #define Y_MIN 80
 #define X_MIN 20
 
+#include <ncurses.h>
+
+#define OFFSET(a, b) ((a) - ((b) - 3))
+#define PREVW_LINES LINES - 2
+#define PREVW_COLS COLS / 3
+
 #define LEN_TO_READ 1024
 
-#include <ncurses.h>
 #include "funcs.h"
 
 #endif

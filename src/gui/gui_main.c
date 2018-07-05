@@ -32,16 +32,18 @@ void display_too_small(void)
 **           explorer_t *explorer - Explorer data
 ** RETURNS : None
 */
-void display_files(WINDOW *win, explorer_t *explorer)
+void display_files(WINDOW *win, WINDOW* preview, explorer_t *explorer)
 {
 	file_t *actual = explorer->head;
-	int offset = explorer->tree_pos - (LINES - 3);
 
-	for (int count = 0; actual != NULL && count < offset; count++)
+	for (int count = 0; actual != NULL
+	&& count < OFFSET(explorer->tree_pos, LINES); count++)
 		actual = actual->next;
 	for (int i = 0; actual != NULL && i < LINES - 2; i++) {
-		if (actual->active == true)
+		if (actual->active == true) {
+			print_preview(actual, preview);
 			wattron(win, A_REVERSE);
+		}
 		enable_color(win, actual);
 		mvwprintw(win, i + 1, 1, actual->name);
 		wattroff(win, A_REVERSE);
@@ -58,16 +60,18 @@ void display_files(WINDOW *win, explorer_t *explorer)
 */
 void display_windows(WINDOW **main_w, WINDOW **right_w, explorer_t *explorer)
 {
+	WINDOW *prevw;
 	int coord[3];
 
 	coord[0] = 1;
 	coord[1] = 0;
 	coord[2] = COLS;
 	*main_w = subwin(stdscr, LINES, COLS, 0, 0);
-	*right_w = subwin(stdscr, LINES - 2, COLS / 3, 1,
+	*right_w = subwin(stdscr, PREVW_LINES, PREVW_COLS, 1,
 	COLS - (COLS / 3) - 1);
+	prevw = derwin(*right_w, PREVW_LINES - 2, PREVW_COLS - 2, 1, 1);
 	box(*main_w, ACS_VLINE, ACS_HLINE);
 	box(*right_w, ACS_VLINE, ACS_HLINE);
-	wborder(*right_w, '/', '/', '/', '/', '/', '/', '/', '/');
+	*right_w = prevw;
 	print_in_middle(*main_w, coord, explorer->cwd, COLOR_WHITE);
 }

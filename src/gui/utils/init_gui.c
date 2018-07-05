@@ -8,9 +8,15 @@
 #include "libC.h"
 #include "explorer.h"
 
+/*
+** PURPOSE : Function used to initialize the ncurses GUI
+** PARAMS  : None
+** RETURNS : None
+*/
 void init_gui(void)
 {
 	initscr();
+	curs_set(0);
 	keypad(stdscr, TRUE);
 	if (has_colors() == FALSE) {
 		endwin();

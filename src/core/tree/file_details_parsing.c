@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2017
-** file_parsing.c by tfoubert <thomas.foubert@epitech.eu>
+** file_details_parsing.c by tfoubert <thomas.foubert@epitech.eu>
 ** File description:
-** file_parsing.c file of the {{project_name}} project
+** file_details_parsing.c file of the {{project_name}} project
 */
 
 #include "libC.h"

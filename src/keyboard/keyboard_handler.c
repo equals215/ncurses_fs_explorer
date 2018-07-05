@@ -21,7 +21,7 @@ void next_file(explorer_t *explorer)
 	while (actual->active == false && actual->next != NULL)
 		actual = actual->next;
 	if (actual->active == true && actual->next != NULL) {
-		explorer->pos++;
+		explorer->tree_pos++;
 		actual->active = false;
 		actual->next->active = true;
 	} else
@@ -40,7 +40,7 @@ void prev_file(explorer_t *explorer)
 	while (actual->active == false && actual->next != NULL)
 		actual = actual->next;
 	if (actual->active == true && actual->prev != NULL) {
-		explorer->pos--;
+		explorer->tree_pos--;
 		actual->active = false;
 		actual->prev->active = true;
 	} else
@@ -59,15 +59,14 @@ void change_dir(explorer_t *explorer)
 
 	while (actual->active == false && actual->next != NULL)
 		actual = actual->next;
-	if (actual->dir == true && opendir(actual->name) == NULL) {
-		perror("explorer");
-		exit(84);
-	} else if (actual->dir == true) {
+	if (actual->dir == true && opendir(actual->name) != NULL) {
+		free(explorer->cwd);
 		explorer->cwd = realpath(actual->name, buf);
 		chdir(explorer->cwd);
 		free_all_nodes(explorer->head);
 		explorer->head = NULL;
 		get_files_and_dirs(explorer);
+		explorer->tree_pos = 0;
 	}
 }
 

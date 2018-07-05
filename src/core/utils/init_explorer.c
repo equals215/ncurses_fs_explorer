@@ -29,6 +29,7 @@ explorer_t *init_explorer(int ac, char **av)
 	} else
 		new->cwd = getpwd();
 	new->head = NULL;
-	new->pos = 0;
+	new->tree_pos = 0;
+	new->prevw_pos = 0;
 	return (new);
 }

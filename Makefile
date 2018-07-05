@@ -6,18 +6,21 @@
 ##
 
 SRC		=	src/main.c				\
+			src/core/preview/file_parsing.c		\
 			src/core/tree/dir_parsing.c		\
-			src/core/tree/file_parsing.c		\
+			src/core/tree/file_details_parsing.c	\
 			src/core/tree/list_parsing.c		\
 			src/core/utils/free_nodes.c		\
 			src/core/utils/free_explorer.c		\
 			src/core/utils/free_tab.c		\
 			src/core/utils/getpwd.c			\
 			src/core/utils/init_explorer.c		\
+			src/gui/utils/end_gui.c			\
 			src/gui/utils/init_gui.c		\
 			src/gui/utils/middle_print.c		\
 			src/gui/color_handler.c			\
 			src/gui/gui_main.c			\
+			src/gui/print_preview.c			\
 			src/keyboard/keyboard_handler.c		\
 
 SRCS_TEST	=
