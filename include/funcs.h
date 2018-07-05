@@ -21,6 +21,7 @@ char **parse_dir(char *);
 /* src/core/utils/getpwd.c */
 char *getpwd(void);
 /* src/core/utils/init_explorer.c */
+void sig_handler(int);
 explorer_t *init_explorer(int, char **);
 /* src/core/utils/free_tab.c */
 void free_tab(char **);
@@ -52,5 +53,7 @@ int main(int, char **);
 void next_file(explorer_t *);
 void prev_file(explorer_t *);
 void change_dir(explorer_t *);
-void keyboard_ctrl_handling(int, explorer_t *);
 int keyboard_event(explorer_t *);
+/* src/keyboard/keyboard_ctrl_handler.c */
+void paste(explorer_t *);
+void keyboard_ctrl_handling(int, explorer_t *);

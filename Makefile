@@ -22,6 +22,7 @@ SRC		=	src/main.c				\
 			src/gui/color_handler.c			\
 			src/gui/gui_main.c			\
 			src/gui/print_preview.c			\
+			src/keyboard/keyboard_ctrl_handler.c	\
 			src/keyboard/keyboard_handler.c		\
 
 SRCS_TEST	=

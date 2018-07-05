@@ -71,26 +71,6 @@ void change_dir(explorer_t *explorer)
 }
 
 /*
-** PURPOSE : Function used to interpret ctrl keyboard events
-** PARAMS  : int ch - Key catched
-** RETURNS : None
-*/
-void keyboard_ctrl_handling(int ch, explorer_t *explorer)
-{
-	switch (ch) {
-		case CTRL('c'):
-			copy_cut_file(explorer, COPY);
-			break;
-		case CTRL('x'):
-			copy_cut_file(explorer, CUT);
-			break;
-		case CTRL('v'):
-			paste_file(explorer);
-			break;
-	}
-}
-
-/*
 ** PURPOSE : Function used to catch and interpret keyboard events
 ** PARAMS  : explorer_t *explorer - Explorer data
 ** RETURNS : int - Action to do

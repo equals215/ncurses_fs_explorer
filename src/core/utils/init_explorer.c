@@ -10,6 +10,17 @@
 #include "memory.h"
 
 /*
+** PURPOSE : Do nothing
+** PARAMS  : int sig - Not being used
+** RETURNS : None
+*/
+void sig_handler(int sig)
+{
+	sig = sig;
+	return;
+}
+
+/*
 ** PURPOSE : Init the explorer data based on arguments
 ** PARAMS  : int ac - Number of arguments used to initiate the explorer
 **           char **av - Arguments used to initiate the explorer
@@ -20,6 +31,7 @@ explorer_t *init_explorer(int ac, char **av)
 	char *buf = smalloc(sizeof(char) * PATH_MAX);
 	explorer_t *new = (explorer_t *)smalloc(sizeof(explorer_t));
 
+	signal(SIGINT, sig_handler);
 	if (ac == 2 && opendir(av[1]) == NULL) {
 		perror("explorer");
 		exit(84);
