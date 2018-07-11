@@ -17,7 +17,7 @@ You can use `./explorer /a/dir/path` to start the explorer in a particular direc
 |--|--|
 | ⇅ | to navigate through files |
 | ↵ |to change directory|
-| ZQSD | to move the preview |
+| ZQSD | to move the preview [WIP]|
 |CTRL + C | to copy a file [WIP]|
 |CTRL + X | to cut a file [WIP] |
 |CTRL + V | to paste a file [WIP] |
