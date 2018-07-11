@@ -11,7 +11,7 @@ Execute the following command to build it:
 
 ## Usage
 Execute `./explorer` to start the explorer.\
-You can use `./explorer a/path/to/dir/` to start the explorer in a particular directory.\
+You can use `./explorer a/path/to/dir/` to start the explorer in a particular directory.
 
 |Keys|Action
 |--|--|
