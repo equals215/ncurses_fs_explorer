@@ -17,11 +17,13 @@ You can use `./explorer a/path/to/dir/` to start the explorer in a particular di
 |--|--|
 | ⇅ | to navigate through files |
 | ↵ |to change directory|
-| ZQSD | to move the preview [WIP]|
-|CTRL + C | to copy a file [WIP]|
-|CTRL + X | to cut a file [WIP] |
-|CTRL + V | to paste a file [WIP] |
+| ZQSD | to move the preview [WIP] |
+|CTRL + C or c | to copy a file [WIP] |
+|CTRL + X or x | to cut a file [WIP] |
+|CTRL + V or v | to paste a file [WIP] |
 | q | to quit the explorer
+
+The CTRL + C control is still a bit buggy
 
 ## Notes
 Feel free to report any bugs and memory errors in the Issue section.\
