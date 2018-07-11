@@ -1,6 +1,6 @@
 # ncurses_fs_explorer [![Build Status](https://travis-ci.org/equals215/ncurses_fs_explorer.svg?branch=master)](https://travis-ci.org/equals215/ncurses_fs_explorer)
-A lightweight designed filesystem explorer.
-This file explorer is a personal project that I've made at the end of my first Epitech's year, It follows the Epitech's coding style and the C99 norm.
+A lightweight designed filesystem explorer.\
+This file explorer is a personal project that I've made at the end of my first Epitech's year, It follows the Epitech's coding style and the C99 norm.\
 This program was made under Linux based OS, so I cannot guarantee that it will work proprely on either Windows or Mac OS X.
 
 ## Building
