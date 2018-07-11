@@ -30,12 +30,15 @@ void paste(explorer_t *explorer)
 void keyboard_ctrl_handling(int ch, explorer_t *explorer)
 {
 	switch (ch) {
+		case 'c':
 		case CTRL('c'):
 			copy_cut_file(explorer, COPY);
 			break;
+		case 'x':
 		case CTRL('x'):
 			copy_cut_file(explorer, CUT);
 			break;
+		case 'v':
 		case CTRL('v'):
 			paste(explorer);
 			break;

@@ -21,7 +21,7 @@ void paste_file(explorer_t *explorer)
 	pid_t ws;
 
 	if ((pid = fork()) == 0) {
-		execl("/bin/cp", "/bin/cp", explorer->file_io_path,
+		execl("/bin/cp", "cp", explorer->file_io_path,
 		explorer->cwd, (char *) NULL);
 	} else if (pid < 0) {
 		fprintf(stderr, "explorer: Couldn't fork\n");
