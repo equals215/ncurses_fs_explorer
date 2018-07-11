@@ -40,7 +40,7 @@ void paste_file(explorer_t *explorer)
 /*
 ** PURPOSE : Copy a file
 ** PARAMS  : explorer_t *explorer - Explorer data
-**           file_t *node -
+**           int action - Action to perform
 ** RETURNS : None
 */
 void copy_cut_file(explorer_t *explorer, int action)
