@@ -4,14 +4,14 @@ This file explorer is a personal project that I've made at the end of my first E
 This program was made under Linux based OS, so I cannot guarantee that it will work proprely on either Windows or Mac OS X.
 
 ## Building
-You will need the glibc, libncurses and make to build and execute the program
-Execute the following command :
+You will need the glibc, libncurses and make to build and execute the program.\
+Execute the following command to build it:
 
     make all clean
 
 ## Usage
-Execute `./explorer` to start the explorer
-You can use `./explorer /a/dir/path` to start the explorer in a particular directory
+Execute `./explorer` to start the explorer.\
+You can use `./explorer a/path/to/dir/` to start the explorer in a particular directory.\
 
 |Keys|Action
 |--|--|
@@ -24,5 +24,5 @@ You can use `./explorer /a/dir/path` to start the explorer in a particular direc
 | q | to quit the explorer
 
 ## Notes
-Feel free to report any bugs and memory errors in the Issue section.
+Feel free to report any bugs and memory errors in the Issue section.\
 I encourage you to fork the project and use it or it's code in any way.
