@@ -11,6 +11,7 @@
 
 int main(int ac, char **av)
 {
+	int ret = 0;
 	WINDOW *main_w;
 	WINDOW *right_w;
 	explorer_t *explorer = init_explorer(ac, av);
@@ -23,11 +24,11 @@ int main(int ac, char **av)
 		wrefresh(main_w);
 		wrefresh(right_w);
 		display_too_small();
-		if(keyboard_event(explorer) == 1)
+		if((ret = keyboard_event(explorer)))
 			break;
 		clear();
 	}
 	endwin();
 	free_explorer(explorer);
-	return (0);
+	return (ret == 1 ? 0 : ret);
 }

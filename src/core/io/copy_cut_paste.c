@@ -12,9 +12,33 @@
 /*
 ** PURPOSE : Paste a previously copied file
 ** PARAMS  : explorer_t *explorer - Explorer data
+** RETURNS : int - State
+*/
+int paste_file(explorer_t *explorer)
+{
+	char ch;
+	FILE *source = fopen(explorer->file_io_path, "r");
+	FILE *target = fopen(explorer->file_io_name, "w");
+
+	if (source == NULL || target == NULL) {
+		perror("explorer");
+		return (84);
+	}
+	while((ch = fgetc(source)) != EOF)
+		fputc(ch, target);
+	fclose(source);
+	fclose(target);
+	if (explorer->io_action == CUT)
+		remove(explorer->file_io_path);
+	return (0);
+}
+
+/*
+** PURPOSE : Paste a previously copied file
+** PARAMS  : explorer_t *explorer - Explorer data
 ** RETURNS : None
 */
-void paste_file(explorer_t *explorer)
+void paste_file2(explorer_t *explorer)
 {
 	int child_exit;
 	pid_t pid;
@@ -51,5 +75,6 @@ void copy_cut_file(explorer_t *explorer, int action)
 	while (actual->active == false && actual->next != NULL)
 		actual = actual->next;
 	explorer->io_action = action;
+	explorer->file_io_name = strdup(actual->name);
 	explorer->file_io_path = realpath(actual->name, buf);
 }

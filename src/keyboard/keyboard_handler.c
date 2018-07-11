@@ -95,6 +95,5 @@ int keyboard_event(explorer_t *explorer)
 		default:
 			break;
 	}
-	keyboard_ctrl_handling(ch, explorer);
-	return (0);
+	return (keyboard_ctrl_handling(ch, explorer));
 }

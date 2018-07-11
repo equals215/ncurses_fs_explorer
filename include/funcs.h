@@ -6,7 +6,8 @@
 */
 
 /* src/core/io/copy_cut_paste.c */
-void paste_file(explorer_t *);
+int paste_file(explorer_t *);
+void paste_file2(explorer_t *);
 void copy_cut_file(explorer_t *, int);
 /* src/core/tree/file_details_parsing.c */
 int is_binary(const void *);
@@ -55,5 +56,5 @@ void prev_file(explorer_t *);
 void change_dir(explorer_t *);
 int keyboard_event(explorer_t *);
 /* src/keyboard/keyboard_ctrl_handler.c */
-void paste(explorer_t *);
-void keyboard_ctrl_handling(int, explorer_t *);
+int paste(explorer_t *);
+int keyboard_ctrl_handling(int, explorer_t *);

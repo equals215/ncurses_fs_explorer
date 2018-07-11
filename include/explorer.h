@@ -24,6 +24,7 @@ typedef struct explorer_s
 	char *cwd;
 	int io_action;
 	char *file_io_path;
+	char *file_io_name;
 	int tree_pos;
 	int prevw_pos;
 }explorer_t;
