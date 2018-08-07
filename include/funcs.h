@@ -56,5 +56,6 @@ void prev_file(explorer_t *);
 void change_dir(explorer_t *);
 int keyboard_event(explorer_t *);
 /* src/keyboard/keyboard_ctrl_handler.c */
+char *remove_filename(char *);
 int paste(explorer_t *);
 int keyboard_ctrl_handling(int, explorer_t *);

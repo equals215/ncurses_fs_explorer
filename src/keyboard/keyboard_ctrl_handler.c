@@ -9,6 +9,23 @@
 #include "explorer.h"
 
 /*
+** PURPOSE : Truncate the filename at the end of a path
+** PARAMS  : char *path - Path which will be truncated
+** RETURNS : char* - Malloc'd string of the truncated path
+*/
+char *remove_filename(char *path)
+{
+	char *new_path = strdup(path);
+	int i = strlen(new_path);
+
+	for (; new_path[i] != '/' && i != 0; i--) {
+		new_path[i] = '\0';
+	}
+	new_path[i] = '\0';
+	return (new_path);
+}
+
+/*
 ** PURPOSE : Paste file and reload files
 ** PARAMS  : explorer_t *explorer - Explorer data
 ** RETURNS : int - State
@@ -16,7 +33,10 @@
 int paste(explorer_t *explorer)
 {
 	int state = 0;
+	char *path_io = remove_filename(explorer->file_io_path);
 
+	if (!strcmp(path_io, explorer->cwd))
+		return (state);
 	if (!(state = paste_file(explorer))) {
 		free_all_nodes(explorer->head);
 		explorer->head = NULL;
