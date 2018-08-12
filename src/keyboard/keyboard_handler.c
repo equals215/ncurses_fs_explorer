@@ -92,6 +92,8 @@ int keyboard_event(explorer_t *explorer)
 		case 10:
 			change_dir(explorer);
 			break;
+		case 's':
+			explorer->prevw_pos++;
 		default:
 			break;
 	}

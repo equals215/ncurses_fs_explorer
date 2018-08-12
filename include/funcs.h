@@ -32,7 +32,8 @@ char *get_file_content(char *);
 void enable_color(WINDOW *, file_t *);
 void disable_color(WINDOW *, file_t *);
 /* src/gui/print_preview.c */
-void print_preview(file_t *, WINDOW *);
+void print_file_with_offset(WINDOW *, char *, int);
+void print_preview(file_t *, WINDOW *, explorer_t *);
 /* src/gui/utils/middle_print.c */
 void print_in_middle(WINDOW *, int *, char *, chtype);
 /* src/gui/utils/init_gui.c */

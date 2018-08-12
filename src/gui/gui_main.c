@@ -41,7 +41,7 @@ void display_files(WINDOW *win, WINDOW* preview, explorer_t *explorer)
 		actual = actual->next;
 	for (int i = 0; actual != NULL && i < LINES - 2; i++) {
 		if (actual->active == true) {
-			print_preview(actual, preview);
+			print_preview(actual, preview, explorer);
 			wattron(win, A_REVERSE);
 		}
 		enable_color(win, actual);
